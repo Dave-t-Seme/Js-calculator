@@ -45,7 +45,7 @@ class Calculator {
                 computation = previous - current
                 break
             
-            case '*':
+            case 'x':
                 computation = previous * current
                 break
             
