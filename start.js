@@ -29,7 +29,7 @@ class Calculator {
     }
     //to be able to update the numbers and output on a screen
     updateDisplay() {
-        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand)
+        this.currentOperandTextElement.innerText = this.currentOperand
     }
 }
 
