@@ -17,11 +17,14 @@ class Calculator {
     }
     //to display the number clicked in
     appendNumber(number) {
-        this.currentOperand = number
+        if (number ==='.' && this.currentOperand.includes('.')) return
+        this.currentOperand = this.currentOperand.toString() + number.toString()
     }
     //to choose on the operation clicked on
     chooseOperation(operation) {
-
+        this.operation = operation
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ''
     }
     //to be able to coomputer what is given to the calculator
     compute() {
@@ -30,6 +33,7 @@ class Calculator {
     //to be able to update the numbers and output on a screen
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.currentOperand
+        this.previousOperandTextElement.innerText = this.currentOperand
     }
 }
 
@@ -37,7 +41,7 @@ class Calculator {
 
 //using data attributes to be able to select our JavaSCript elements
 const numberButtons = document.querySelectorAll('[data-number]')
-const opertaionButtons = document.querySelectorAll('[data-operation]')
+const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
 const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-allClear]')
@@ -52,5 +56,13 @@ numberButtons.forEach(button => {
         //to disaplay the number clicked
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
+    })
+})
+ //so as to display the operations
+
+ operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      calculator.chooseOperation(button.innerText)
+      calculator.updateDisplay()
     })
 })
